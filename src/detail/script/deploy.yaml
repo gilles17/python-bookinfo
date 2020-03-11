@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: detail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: detail
+  template:
+    metadata:
+      labels:
+        app: detail
+    spec:
+      containers:
+      - name: controller
+        image: python:3.5
+        command: ["python", "/pycode/detail.py"]
+        volumeMounts:
+        - name: pycode
+          mountPath: /pycode
+      volumes:
+      - name: pycode
+        configMap:
+          name: pycode-detail
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: detail
+spec:
+  selector:
+    app: detail
+  ports:
+  - port: 8082
