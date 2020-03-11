@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mainpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mainpage
+  template:
+    metadata:
+      labels:
+        app: mainpage
+    spec:
+      containers:
+      - name: controller
+        image: python:3.5
+        command: ["python", "/pycode/mainpage.py"]
+        volumeMounts:
+        - name: pycode
+          mountPath: /pycode
+      volumes:
+      - name: pycode
+        configMap:
+          name: pycode-mainpage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mainpage
+spec:
+  selector:
+    app: mainpage
+  ports:
+  - port: 8081
