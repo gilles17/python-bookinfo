@@ -13,7 +13,7 @@ class Controller(BaseHTTPRequestHandler):
         if '/info' == self.path:
             # res = urllib.request.urlopen("http://127.0.0.1:8082/detail")
             try:
-                res = urllib.request.urlopen("http://detail:8082")
+                res = urllib.request.urlopen("http://detail:8082/detail")
                 detail = res.read().decode("utf-8")
             except BaseException:
                 detail = 'error'

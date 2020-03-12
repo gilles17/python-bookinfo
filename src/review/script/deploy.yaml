@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: review
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: review
+  template:
+    metadata:
+      labels:
+        app: review
+    spec:
+      containers:
+      - name: controller
+        image: python:3.5
+        command: ["python", "/pycode/detail.py"]
+        volumeMounts:
+        - name: pycode
+          mountPath: /pycode
+      volumes:
+      - name: pycode
+        configMap:
+          name: pycode-review
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: review
+spec:
+  selector:
+    app: review
+  ports:
+  - port: 8083
