@@ -1,16 +1,16 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: detail
+  name: detail-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: detail
+      app: detail-app
   template:
     metadata:
       labels:
-        app: detail
+        app: detail-app
     spec:
       containers:
       - name: controller
@@ -27,9 +27,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: detail
+  name: detail-svc
 spec:
   selector:
-    app: detail
+    app: detail-app
   ports:
   - port: 8082

@@ -1,16 +1,16 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: mainpage
+  name: mainpage-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mainpage
+      app: mainpage-app
   template:
     metadata:
       labels:
-        app: mainpage
+        app: mainpage-app
     spec:
       containers:
       - name: controller
@@ -27,9 +27,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mainpage
+  name: mainpag-svc
 spec:
   selector:
-    app: mainpage
+    app: mainpage-app
   ports:
   - port: 8081

@@ -1,16 +1,16 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: review
+  name: review-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: review
+      app: review-app
   template:
     metadata:
       labels:
-        app: review
+        app: review-app
     spec:
       containers:
       - name: controller
@@ -27,9 +27,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: review
+  name: review-svc
 spec:
   selector:
-    app: review
+    app: review-app
   ports:
   - port: 8083
