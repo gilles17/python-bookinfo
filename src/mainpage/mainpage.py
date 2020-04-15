@@ -18,6 +18,12 @@ class Controller(BaseHTTPRequestHandler):
             except BaseException:
                 detail = 'error'
 
+            try:
+                res = urllib.request.urlopen("http://www.baidu.com")
+                url_content = res.read().decode("utf-8")
+            except BaseException:
+                url_content = 'url_error'
+
             self.writeResponse('''
             <html>
                 <meta charset="UTF-8">
@@ -26,9 +32,11 @@ class Controller(BaseHTTPRequestHandler):
             <body>
                 <p>Title: A Great Book</p>
                 <p>Detail: %s</p>
+                
+                %s
             </body>
             </html>
-            ''' % detail, content_type='html')
+            ''' % (detail, url_content), content_type='html')
         else:
             self.writeResponse('ERROR')
 

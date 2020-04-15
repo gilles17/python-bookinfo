@@ -51,7 +51,7 @@ spec:
       containers:
       - name: controller
         image: python:3.5
-        command: ["python", "/pycode/detail_v2.py"]
+        command: ["python", "/pycode/detail-v2.py"]
         volumeMounts:
         - name: pycode
           mountPath: /pycode
