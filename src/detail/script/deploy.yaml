@@ -5,17 +5,17 @@ metadata:
   labels:
     app: detail-app
     version: v1
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: detail-app
+      version: v1
+  template:
+    metadata:
+      labels:
         app: detail-app
         version: v1
-    template:
-      metadata:
-        labels:
-          app: detail-app
-          version: v1
     spec:
       containers:
       - name: controller

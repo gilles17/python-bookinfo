@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: review-app
-        version: v1
+      version: v1
   template:
     metadata:
       labels:
