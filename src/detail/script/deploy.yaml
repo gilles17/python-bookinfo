@@ -32,7 +32,7 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: detail-deployment
+  name: detail-deployment-v2
   labels:
     app: detail-app
     version: v2
@@ -58,7 +58,7 @@ spec:
       volumes:
       - name: pycode
         configMap:
-          name: pycode-detail_v2
+          name: pycode-detail-v2
 ---
 apiVersion: v1
 kind: Service
