@@ -2,15 +2,20 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: detail-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: detail-app
-  template:
-    metadata:
-      labels:
+  labels:
+    app: detail-app
+    version: v1
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
         app: detail-app
+        version: v1
+    template:
+      metadata:
+        labels:
+          app: detail-app
+          version: v1
     spec:
       containers:
       - name: controller

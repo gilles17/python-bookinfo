@@ -2,15 +2,20 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: mainpage-deployment
+  labels:
+    app: mainpage-app
+    version: v1
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mainpage-app
+      version: v1
   template:
     metadata:
       labels:
         app: mainpage-app
+        version: v1
     spec:
       containers:
       - name: controller
@@ -27,7 +32,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mainpag-svc
+  name: mainpage-svc
 spec:
   selector:
     app: mainpage-app
